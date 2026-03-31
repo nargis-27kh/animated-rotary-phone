@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NARGIS KHATOON</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>moulika <span>m</span></h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>NARGIS KHATOON</h1>
+        <h3><span id="typing"></span></h3>
+        <p class="subtitle">BCA Pursuing Student</p>
+        <p class="tagline">
+            I am passionate about coding, front-end design and backend development.
+            I enjoy building modern, responsive and interactive web experiences.
+        </p>
+    </section>
+
+    <section id="about" class="section hidden">
+        <h2>About</h2>
+        <div class="card">
+            I am currently pursuing BCA and continuously improving my programming skills.
+            My focus is on front-end development and design while also exploring backend technologies.
+        </div>
+    </section>
+
+    <section id="skills" class="section hidden">
+        <h2>Skills</h2>
+        <div class="skills">
+            <span>C</span>
+            <span>C++</span>
+            <span>Python</span>
+            <span>HTML</span>
+            <span>Java</span>
+        </div>
+    </section>
+
+    <section id="projects" class="section hidden">
+        <h2>Projects</h2>
+
+        <div class="card">
+            <h3>Website using HTML</h3>
+            <p>Designed and developed a responsive website using structured HTML.</p>
+        </div>
+
+        <div class="card">
+            <h3>Mini Projects</h3>
+            <p>Worked on academic programming and front-end design projects.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section hidden">
+        <h2>Contact</h2>
+
+        <div class="contact-grid">
+
+            <!-- Info Column -->
+            <div class="card info-card">
+                <div class="social-icons">
+
+                    <a href="mailto:25bcaa47@kristujayanti.com" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+
+                    <a href="tel:+918618828618" title="Phone">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+
+                    <a href="https://github.com/nargis-27kh" target="_blank" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/nargis-khatoon-0395133b1" target="_blank" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                </div>
+                <!-- Form Column -->
+                <div class="card form-card">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <input type="text" id="name" required>
+                        <input type="email" id="email" required>
+                        <textarea id="message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+    </section>
+
+    <footer>
+        © 2026 NARGIS KHATOON | All Rights Reserved
+    </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-gf1Cg7jjzrwMWunqLvcLEJ2y-tptjcc",
+            authDomain: "nargis27kh.firebaseapp.com",
+            projectId: "nargis27kh",
+            storageBucket: "nargis27kh.firebasestorage.app",
+            messagingSenderId: "524828738660",
+            appId: "1:524828738660:web:266b8ddd5b2e343faa0b71"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const form = document.getElementById("contactForm");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            try {
+                await addDoc(collection(db, "messages"), {
+                    name: name,
+                    email: email,
+                    message: message,
+                    createdAt: new Date()
+                });
+
+                alert("Message Sent Successfully!");
+                form.reset();
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+    </script>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
